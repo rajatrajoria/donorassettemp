@@ -1,0 +1,147 @@
+[
+    {
+        "type": "donorRecord",
+        "firstName": "Suresh",
+        "lastName": "Mehta",
+        "dob": "1990-5-22",
+        "aadhar": "17889492",
+        "phoneNumber": "8394783920",
+        "address": "Ring Road, Delhi - 128402",
+        "bloodGroup": "O+",
+        "password": "ee6affdb08c3ef9c6444816329b56250ae42a2149b3e72136251a7d8340de43b",
+        "pwdTemp": true,
+        "donationHistory": {
+            "donation1": {
+                "dateOfDonation": "2022-5-13",
+                "status": "successful",
+                "bloodBagUnitNo": "500"
+            },
+            "donation2": {
+                "dateOfDonation": "2023-5-13",
+                "status": "successful",
+                "bloodBagUnitNo": "510"
+            }
+        },
+        "donationStatus": "-",
+        "creditCard": "1000"
+    },
+    {
+        "type": "donorRecord",
+        "firstName": "Robin",
+        "lastName": "Joseph",
+        "dob": "1970-12-10",
+        "aadhar": "14932742",
+        "phoneNumber": "9045930284",
+        "address": "Nehru Marg, Kukattpally, Hyderabad - 123342",
+        "bloodGroup": "B+",
+        "password": "fd1e5d642da134218f1cc5c260feb3e4042658a35d78c4eb2fe2b2f1c7e7795b",
+        "pwdTemp": true,
+        "donationHistory": {
+            "donation1": {
+                "dateOfDonation": "2023-9-20",
+                "status": "successful",
+                "bloodBagUnitNo": "520"
+            }
+        },
+        "donationStatus": "-",
+        "creditCard": "200"
+    },
+    {
+        "type": "donorRecord",
+        "firstName": "Yash",
+        "lastName": "Rathi",
+        "dob": "2002-10-23",
+        "aadhar": "34831943",
+        "phoneNumber": "9648376789",
+        "address": "Kingston Town, Portugese Road, Panaji, Goa - 120009",
+        "bloodGroup": "B+",
+        "password": "8c90267256e654ee3f77196ee12e952dc45cd970d030bfa069614cc2d923313c",
+        "pwdTemp": true,
+        "donationHistory": {},
+        "ailments": false,
+        "donationStatus": "-",
+        "creditCard": "328"
+    },
+    {
+        "type": "donorRecord",
+        "firstName": "Madhuri",
+        "lastName": "Gupta",
+        "dob": "1980-1-1",
+        "aadhar": "28942039",
+        "phoneNumber": "7898798098",
+        "address": "Satyam Apartments, Downing Street, Mumbai - 100974",
+        "bloodGroup": "AB+",
+        "password": "31bb1dcc31812dac9deb87c014fc8e5e46013a982c2a724447d5c444aac713a7",
+        "pwdTemp": false,
+        "donationHistory": {
+            "donation1": {
+                "dateOfDonationRegistration": "2023-9-10",
+                "status": "failed",
+                "reason": "low pressure"
+            }
+        },
+        "donationStatus": "pending",
+        "creditCard": "0"
+    },
+    {
+        "type": "donorRecord",
+        "firstName": "Ratan",
+        "lastName": "Aahluwalia",
+        "dob": "1965-2-20",
+        "aadhar": "24900943",
+        "phoneNumber": "9845097823",
+        "address": "Vikas Mansion, Gordon Street, Pune - 327493",
+        "bloodGroup": "O-",
+        "password": "eceb33ea781e143861a75ebc6462188a8428b8fab68d123cec31614f6b5a9b58",
+        "pwdTemp": false,
+        "donationHistory": {},
+        "donationStatus": "-",
+        "creditCard": "0"
+    },
+    {
+        "type": "donorRecord",
+        "firstName": "Haris",
+        "lastName": "Md.",
+        "dob": "2000-8-10",
+        "aadhar": "95031245",
+        "phoneNumber": "8549072983",
+        "address": "Sultania Heights, Ville Parle, Mumbai - 100982",
+        "bloodGroup": "A+",
+        "password": "49bb4e28642c7eee1fdb6fc3d359d80c22b5a871c441be09c103538be167a281",
+        "pwdTemp": false,
+        "donationHistory": {},
+        "donationStatus": "-",
+        "creditCard": "0"
+    },
+    {
+        "type": "tempRecord",
+        "bloodBagUnitNo": "510",
+        "badSegmentNo": "59",
+        "dateOfDonation": "2023-9-20",
+        "qty": "550"
+    },
+    {
+        "type": "tempRecord",
+        "bloodBagUnitNo": "520",
+        "badSegmentNo": "54",
+        "dateOfDonation": "2023-9-20",
+        "qty": "450"
+    },
+    {
+        "type": "finalRecord",
+        "bloodBagUnitNo": "500",
+        "badSegmentNo": "35",
+        "dateOfDonation": "2022-5-13",
+        "qty": "500",
+        "dateOfExpiry": "2022-6-13",
+        "grouping": "B+",
+        "results": {
+            "malaria": 0,
+            "syphilis": 0,
+            "hcv": 0,
+            "hepatitisB": 0,
+            "irregularAntibody": 0
+        },
+        "checkedBy": "hosp1-tech4"
+    }
+]
