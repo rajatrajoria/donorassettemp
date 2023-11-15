@@ -6,52 +6,27 @@
  */
 'use strict';
 
+let Donor = require('./donor.js');
 const crypto = require('crypto');
+const PrimaryContract = require('./primary-contract.js');
 const { Context } = require('fabric-contract-api');
 
-class DonorContract{
-
-    //Read donor's details based on donorId
+class DonorContract extends PrimaryContract{
+/*
+    //Read donor's details based on donorID
     async readDonor(ctx, donorID) {
-        const exists = await this.donorExists(ctx, donorID);
-        if (!exists) {
-            throw new Error(`The donor ${donorID} does not exist`);
-        }
-    
-        const buffer = await ctx.stub.getState(donorID);
-        let asset = JSON.parse(buffer.toString());
-        asset = ({
-            donorId: patientId,
-            firstName: asset.firstName,
-            lastName: asset.lastName,
-            dob: asset.dob,
-            phoneNumber: asset.phoneNumber,
-            address: asset.address,
-            bloodGroup: asset.bloodGroup,
-            password: asset.password,
-            pwdTemp: asset.pwdTemp,
-            donationStatus: asset.donationStatus, 
-            donationHistory: asset.donationHistory, 
-            creditCard: asset.creditCard
-        });
-        return asset;
-    }
-    
-    //Check if a donor exists against a donor id
-    async donorExists(ctx, donorID) {
-        const buffer = await ctx.stub.getState(donorID);
-        return (!!buffer && buffer.length > 0);
+        return await super.readDonor(ctx, patientId);
     }
 
     //This function is to update donor's limited details. This function should be called by donor.
     async updateDonorPersonalDetails(ctx, args) {
         args = JSON.parse(args);
         let isDataChanged = false;
-        let donorId = args.donorId;
+        let donorID = args.donorID;
         let newPhoneNumber = args.phoneNumber;
         let newAddress = args.address;
         
-        const donor = await this.readDonor(ctx, donorId)
+        let donor = await this.readDonor(ctx, donorID)
 
         if (newPhoneNumber !== null && newPhoneNumber !== '' && donor.phoneNumber !== newPhoneNumber) {
             donor.phoneNumber = newPhoneNumber;
@@ -67,58 +42,41 @@ class DonorContract{
         return;
 
         const buffer = Buffer.from(JSON.stringify(donor));
-        await ctx.stub.putState(donorId, buffer);
+        await ctx.stub.putState(donorID, buffer);
     }
 
     //This function is to update donor's password. This function should be called by donor.
     async updateDonorPassword(ctx, args) {
         args = JSON.parse(args);
-        let donorId = args.donorId;
+        let donorID = args.donorID;
         let newPassword = args.newPassword;
 
         if (newPassword === null || newPassword === '') {
             throw new Error(`Empty or null values should not be passed for newPassword parameter`);
         }
 
-        const donor = await this.readDonor(ctx, donorId);
+        let donor = await this.readDonor(ctx, donorID);
         donor.password = crypto.createHash('sha256').update(newPassword).digest('hex');
         if(donor.pwdTemp){
             donor.pwdTemp = false;
         }
         const buffer = Buffer.from(JSON.stringify(donor));
-        await ctx.stub.putState(donorId, buffer);
+        await ctx.stub.putState(donorID, buffer);
     }
 
     //Returns the donor's password
-    async getDonorPassword(ctx, donorId) {
-        let donor = await this.readDonor(ctx, donorId);
+    async getDonorPassword(ctx, donorID) {
+        let donor = await this.readDonor(ctx, donorID);
         donor = ({
             password: donor.password,
-            pwdTemp: donor.pwdTemp})
+            pwdTemp: donor.pwdTemp
+        })
         return donor;
     }
 
-    async getDonorHistory(ctx, donorId){
-        let asset = this.readDonor(ctx, donorId);
+    async getDonorHistory(ctx, donorID){
+        let asset = this.readDonor(ctx, donorID);
         return asset.donationHistory;
-    }
-
-    //Retrieves donor's donation history based on donorId
-    // async getDonorHistory(ctx, donorId) {
-    //     let resultsIterator = await ctx.stub.getHistoryForKey(donorId);
-    //     let asset = await this.getAllDonorResults(resultsIterator);
-
-    //     return this.fetchLimitedFields(asset);
-    // }
-
-    // fetchLimitedFields = (asset) => {
-    //     for (let i = 0; i < asset.length; i++) {
-    //         const obj = asset[i];
-    //         asset[i] = {
-    //             donationHistory: obj.Record.donationHistory
-    //         };
-    //     }
-    //     return asset;
-    // };
+    }*/
 }
 module.exports = DonorContract;

@@ -6,17 +6,17 @@
  */
 'use strict';
 
-//const AdminContract = require('./admin-contract.js');
+const AdminContract = require('./admin-contract.js');
 const PrimaryContract = require("./primary-contract.js");
 const { Context } = require('fabric-contract-api');
 
-class DoctorContract{
+class DoctorContract extends AdminContract{
 
     //Read donor details based on donorId
-    async readDonor(ctx, donorId) {
-        let asset = await PrimaryContract.prototype.readDonor(ctx, donorId)
+    async readDonor(ctx, donorID) {
+        let asset = await PrimaryContract.prototype.readDonor(ctx, donorID)
         asset = ({
-            donorId: donorId,
+            aadhar: asset.aadhar,
             firstName: asset.firstName,
             lastName: asset.lastName,
             dob: asset.dob,
@@ -39,8 +39,8 @@ class DoctorContract{
        	const duration = (dateOfLastDonation!=null)?(new Date() - dateOfLastDonation)/(1000*60*60*24) : null;
        	//now checking if the donor passes the screening test
        	if(age<18 || age>60 || (duration!=null && duration<120)) 
-		    throw new Error(`The donor ${donorId} is not eligible to donate blood`);
-	    donor.donationHistory['donation' + (numberOfDonationsMade + 1)] = {'dateOfDonationRegistration': new Date(), 'status': 'in progress'};
+		throw new Error(`The donor ${donorId} is not eligible to donate blood`);
+	donor.donationHistory['donation' + (numberOfDonationsMade + 1)] = {'dateOfDonationRegistration': new Date(), 'status': 'in progress'};
         const buffer = Buffer.from(JSON.stringify(donor));
         await ctx.stub.putState(donorId, buffer);
     }

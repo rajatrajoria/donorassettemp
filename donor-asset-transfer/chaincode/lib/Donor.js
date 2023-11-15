@@ -11,6 +11,7 @@ class Donor {
 
     constructor(aadhar, firstName, lastName, address, dob, phoneNumber, bloodGroup, donationStatus = '-', donationHistory = {}, creditCard=0, password)
     {
+    	this.type = "donorRecord",
         this.aadhar = aadhar;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -19,7 +20,7 @@ class Donor {
         this.phoneNumber = phoneNumber;
         this.bloodGroup = bloodGroup;
         this.donationStatus = donationStatus;
-        this.donationHistory=donationHistory;
+        this.donationHistory = donationHistory;
         this.creditCard=creditCard;
         this.password = crypto.createHash('sha256').update(password).digest('hex');
         this.pwdTemp = true;
