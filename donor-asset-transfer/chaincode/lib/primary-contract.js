@@ -8,26 +8,33 @@
 
 const { Contract } = require('fabric-contract-api');
 let Donor = require('./Donor.js');
-let initLedgerData = require('./initLedger.json');
+let initLedgerDataDonor = require('./initLedgerDonor.json');
+let initLedgerDataMaster = require('./initLedgerMaster.json');
 
 class PrimaryContract extends Contract {
 
+    //Initializing the ledgers when the network is up for the first time
     async initLedger(ctx) {
         console.info('============= START : Initialize Ledger ===========');
-        for (let i = 0; i < initLedgerData.length; i++) {
-            if(initLedgerData[i]["type"]=="donorRecord")
-                await ctx.stub.putState('D' + initLedgerData[i]["aadhar"], Buffer.from(JSON.stringify(initLedgerData[i])));
-            else if(initLedgerData[i]["type"]=="tempRecord")
-                await ctx.stub.putState('T' + initLedgerData[i]["bloodBagUnitNo"], Buffer.from(JSON.stringify(initLedgerData[i])));
+        for (let i = 0; i < initLedgerDataDonor.length; i++) {
+                await ctx.stub.putState('D' + initLedgerDataDonor[i]["aadhar"], Buffer.from(JSON.stringify(initLedgerDataDonor[i])));
+        }
+        console.info('============= END : Initialize Ledger ===========');
+    }
+    
+    async initLedger2(ctx) {
+        console.info('============= START : Initialize Ledger ===========');
+        for (let i = 0; i < initLedgerDataMaster.length; i++) {
+            if(initLedgerDataMaster[i]["type"]=="tempRecord")
+                await ctx.stub.putState('T' + initLedgerDataMaster[i]["bloodBagUnitNo"], Buffer.from(JSON.stringify(initLedgerDataMaster[i])));
             else
-                await ctx.stub.putState('F' + initLedgerData[i]["bloodBagUnitNo"], Buffer.from(JSON.stringify(initLedgerData[i])));
-            console.info('Added <--> ', initLedgerData[i]);
+                await ctx.stub.putState('F' + initLedgerDataMaster[i]["bloodBagUnitNo"], Buffer.from(JSON.stringify(initLedgerDataMaster[i])));
         }
         console.info('============= END : Initialize Ledger ===========');
     }
 
-    //Read donor's complete details based on donorID
-    async readDonor(ctx, donorID) 	//donorID example: D13128498
+    //Read donor's complete details based on donorID (example: D13128498)
+    async readDonor(ctx, donorID) 
     {	
         const exists = await this.donorExists(ctx, donorID);
         if (!exists) {
